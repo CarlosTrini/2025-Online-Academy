@@ -1,5 +1,6 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Spin } from "antd";
+import { Star, MessageCircle, Users, Book, Hand, Link as LinkIcon, Smartphone, Video } from "lucide-react";
 import { cardCourseT, coursesT, teacherT } from "../../typesInterfaces/types";
 import { getStorageArr } from "../../helpers/storagesFunc";
 import { namesStorage } from "../../initData/namesStorage";
@@ -39,7 +40,7 @@ const TeachersCourse = () => {
     allTeacherCourses.map((t) => (totalStudents += t.students));
     // allTeacherCourses.map((t) => (totalComments += t.commentsCourse?.length));
     allTeacherCourses.map((t) => {
-      if (isNil(t.commentsCourse) === false ) {
+      if (isNil(t.commentsCourse) === false) {
         totalComments += t.commentsCourse.length;
       } else {
         totalComments = 0;
@@ -130,95 +131,95 @@ const TeachersCourse = () => {
 
   return (
     <>
-     <Spin
-          spinning={loaderMoreCourses}
-          size="large"
-          // style={{ minHeight: 500, background: "blue" }}
-        >
-          <section className="w-sections teacher-header">
-            <div className="header-img">
-              <img src={teacherInfo?.picture || noPictureImg} alt="" />
-            </div>
-            <div className="ms-4">
-              <p className="fs-30 fw-bold mb-0">
-                {teacherInfo?.name} {teacherInfo?.lastName}
-              </p>
-              <Badge bg="primary">{teacherInfo?.typeUser}</Badge>
-              <p className="mt-3 fs-18">
+      <Spin
+        spinning={loaderMoreCourses}
+        size="large"
+      // style={{ minHeight: 500, background: "blue" }}
+      >
+        <section className="w-sections teacher-header">
+          <div className="header-img">
+            <img src={teacherInfo?.picture || noPictureImg} alt="" />
+          </div>
+          <div className="ms-4">
+            <p className="fs-30 fw-bold mb-0">
+              {teacherInfo?.name} {teacherInfo?.lastName}
+            </p>
+            <Badge bg="primary">{teacherInfo?.typeUser}</Badge>
+            <p className="mt-3 fs-18 d-flex align-items-center">
+              {" "}
+              <Star className="text-primary me-2" size={18} /> Puntuación
+              promedio : <span className=" fw-bold ms-1">{average.mark}</span>{" "}
+            </p>
+            <p className="fs-18 d-flex align-items-center">
+              {" "}
+              <MessageCircle className="text-primary me-2" size={18} /> Comentarios:{" "}
+              <span className=" fw-bold ms-1">{average.comments}</span>{" "}
+            </p>
+            <p className="fs-18 d-flex align-items-center">
+              {" "}
+              <Users className="text-primary me-2" size={18} /> Cantidad de
+              estudiantes: <span className=" fw-bold ms-1">{average.studentes}</span>{" "}
+            </p>
+            <p className="fs-18 d-flex align-items-center">
+              {" "}
+              <Book className="text-primary me-2" size={18} /> cursos:{" "}
+              <span className=" fw-bold ms-1">{average.courses}</span>{" "}
+            </p>
+          </div>
+        </section>
+
+        <section className="w-sections mt-5 teacher-about ">
+          <div className="teacher-desc ">
+            <p className="fs-22 fw-bold">Sobre el instructor</p>
+
+            <p className="fs-20 fw-bold text-primary d-flex align-items-center">
+              <Hand className="text-primary me-2" size={20} />
+              {teacherInfo?.aboutMe.greeting}
+            </p>
+
+            <p className="fs-20">{teacherInfo?.aboutMe.text}</p>
+          </div>
+          <div>
+            <ul className="list-unstyled teacher-links fw-bold text-white">
+              <li className="mb-2">
                 {" "}
-                <i className="fas fa-star text-primary me-2"></i> Puntuación
-                promedio : <span className=" fw-bold">{average.mark}</span>{" "}
-              </p>
-              <p className="fs-18">
+                <a href="#" className="d-flex align-items-center">
+                  {" "}
+                  <LinkIcon className="me-2" size={18} /> Página web{" "}
+                </a>
+              </li>
+              <li className="mb-2">
                 {" "}
-                <i className="fas fa-comment text-primary me-2"></i> Comentarios:{" "}
-                <span className=" fw-bold">{average.comments}</span>{" "}
-              </p>
-              <p className="fs-18">
+                <a href="#" className="d-flex align-items-center">
+                  {/* <Facebook className="me-2" size={18} /> Facebok{" "} */}
+                </a>
+              </li>
+              <li className="mb-2">
                 {" "}
-                <i className="fas fa-users text-primary me-2"></i> Cantidad de
-                estudiantes: <span className=" fw-bold">{average.studentes}</span>{" "}
-              </p>
-              <p className="fs-18">
+                <a href="#" className="d-flex align-items-center">
+                  {/* <Linkedin className="me-2" size={18} /> LinkedIn{" "} */}
+                </a>
+              </li>
+              <li className="mb-2">
                 {" "}
-                <i className="fas fa-book text-primary me-2"></i> cursos:{" "}
-                <span className=" fw-bold">{average.courses}</span>{" "}
-              </p>
-            </div>
-          </section>
+                <a href="#" className="d-flex align-items-center">
+                  <Smartphone className="me-2" size={18} /> TikTok{" "}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
 
-          <section className="w-sections mt-5 teacher-about ">
-            <div className="teacher-desc ">
-              <p className="fs-22 fw-bold">Sobre el instructor</p>
-
-              <p className="fs-20 fw-bold text-primary">
-                <i className="fas fa-hand text-primary me-2"></i>
-                {teacherInfo?.aboutMe.greeting}
-              </p>
-
-              <p className="fs-20">{teacherInfo?.aboutMe.text}</p>
-            </div>
-            <div>
-              <ul className="list-unstyled teacher-links fw-bold text-white">
-                <li className="">
-                  {" "}
-                  <a href="#">
-                    {" "}
-                    <i className="fas fa-link me-2 "></i> Página web{" "}
-                  </a>
-                </li>
-                <li className="">
-                  {" "}
-                  <a href="#">
-                    <i className="fa-brands fa-facebook me-2 "></i> Facebok{" "}
-                  </a>
-                </li>
-                <li className="">
-                  {" "}
-                  <a href="#">
-                    <i className="fa-brands fa-linkedin me-2 "></i> LinkedIn{" "}
-                  </a>
-                </li>
-                <li className="">
-                  {" "}
-                  <a href="#">
-                    <i className="fa-brands fa-tiktok me-2 "></i> TikTok{" "}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-        </Spin>
+      </Spin>
 
 
-        <Spin
-          spinning={loaderMoreCourses}
-          size="large"
-          // style={{ minHeight: 500, background: "blue" }}
-        >
-      <section className="w-sections mt-5">
-        <p className="fs-22 fw-bold">Cursos <span>({coursesInfo.length})</span></p>
+      <Spin
+        spinning={loaderMoreCourses}
+        size="large"
+      // style={{ minHeight: 500, background: "blue" }}
+      >
+        <section className="w-sections mt-5">
+          <p className="fs-22 fw-bold">Cursos <span>({coursesInfo.length})</span></p>
           {notFoundCourse === true && (
             <>
               <div className="not-found-container">
@@ -237,22 +238,22 @@ const TeachersCourse = () => {
           {notFoundCourse === false && (
             <>
               <div>
-                <p className="fs-18 text-primary">
-                  <i className="fas fa-video me-2"></i>
+                <p className="fs-18 text-primary d-flex align-items-center">
+                  <Video className="me-2" size={20} />
                   Cursos de este Instructor
                 </p>
               </div>
 
               <div className="teacher-courses">
-                 {coursesInfo.map((t) => (
-                    <CardCourse open={true} {...t} key={t.idTeacher} />
-                  ))}
+                {coursesInfo.map((t) => (
+                  <CardCourse open={true} {...t} key={t.idTeacher} />
+                ))}
               </div>
-             
+
             </>
           )}
-      </section>
-        </Spin>
+        </section>
+      </Spin>
     </>
   );
 };

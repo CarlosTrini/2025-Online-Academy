@@ -6,6 +6,7 @@ import { namesStorage } from "../../initData/namesStorage";
 import { isEmpty, isNil } from "lodash";
 import { simpleAlertTimer } from "../../helpers/alerts";
 import { typeUserCategory, userT } from "../../typesInterfaces/types";
+import { CreditCard, X, Save } from "lucide-react";
 
 const inputsInit = {
   name: "",
@@ -138,9 +139,9 @@ const CreditCardModal: React.FC<propsT> = ({
             <small>
               (la información debe ser falsa, solo respetar la estructura)
             </small>
-            <p className="mb-3 fs-18 fw-bold text-dark">
+            <p className="mb-3 fs-18 fw-bold text-dark d-flex align-items-center">
               {" "}
-              <i className="fas fa-credit-card"></i> Agregar tarjeta
+              <CreditCard size={18} className="me-2" /> Agregar tarjeta
             </p>
           </header>
 
@@ -211,20 +212,20 @@ const CreditCardModal: React.FC<propsT> = ({
 
             <div className="text-end mt-3">
               <button
-                className="btn btn-danger me-2"
+                className="btn btn-danger me-2 d-inline-flex align-items-center justify-content-center"
                 onClick={() => closeModal()}
               >
                 {" "}
-                <i className="fas fa-times me-1"></i> Cerrar
+                <X size={16} className="me-2" /> Cerrar
               </button>
               <button
-                className="btn btn-primary"
+                className="btn btn-primary d-inline-flex align-items-center justify-content-center"
                 onClick={() => {
                   saveCard();
                 }}
               >
                 {" "}
-                <i className="fas fa-floppy-disk me-1"></i> Guardar
+                <Save size={16} className="me-2" /> Guardar
               </button>
             </div>
           </section>

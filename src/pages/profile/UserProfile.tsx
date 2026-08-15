@@ -11,6 +11,7 @@ import { namesStorage } from "../../initData/namesStorage";
 import { isEmpty, isNil } from "lodash";
 import { useNavigate } from "react-router-dom";
 import { Spin, Tabs } from "antd";
+import { IdCard, User, Glasses, Bookmark, CreditCard as CreditCardIcon } from "lucide-react";
 
 import "./userProfile.scss";
 import TabInfo from "./tabs/TabInfo";
@@ -103,12 +104,12 @@ const UserProfile = () => {
                     height={200}
                     className="rounded-circle"
                   />
-                  <p className="fs-30 mb-0 text-50">
-                    <i className="fa-regular fa-id-card me-2"></i>
+                  <p className="fs-30 mb-0 text-50 d-flex align-items-center justify-content-center">
+                    <IdCard className="me-2" size={24} />
                     {userInfo?.name} {userInfo?.lastName}{" "}
                   </p>
-                  <p className="fs-14 mb-0 text-primary">
-                    <i className="fas fa-user me-2"></i>
+                  <p className="fs-14 mb-0 text-primary d-flex align-items-center justify-content-center mt-2">
+                    <User className="me-2" size={16} />
                     usuario: {userInfo?.user}
                   </p>
                   <p className="fs-14 mb-0 text-primary">{userInfo?.typeUser}</p>
@@ -122,9 +123,9 @@ const UserProfile = () => {
                     {
                       label: (
                         <>
-                          <p className="mb-0">
+                          <p className="mb-0 d-flex align-items-center">
                             {" "}
-                            <i className="fas fa-user me-2"></i>Información básica{" "}
+                            <User className="me-2" size={16} />Información básica{" "}
                           </p>
                         </>
                       ),
@@ -139,9 +140,9 @@ const UserProfile = () => {
                     {
                       label: (
                         <>
-                          <p className="mb-0">
+                          <p className="mb-0 d-flex align-items-center">
                             {" "}
-                            <i className="fas fa-glasses me-2"></i> Mis
+                            <Glasses className="me-2" size={16} /> Mis
                             suscripciones{" "}
                           </p>
                         </>
@@ -157,9 +158,9 @@ const UserProfile = () => {
                     {
                       label: (
                         <>
-                          <p className="mb-0">
+                          <p className="mb-0 d-flex align-items-center">
                             {" "}
-                            <i className="fas fa-bookmark me-2"></i> Mis favoritos{" "}
+                            <Bookmark className="me-2" size={16} /> Mis favoritos{" "}
                           </p>
                         </>
                       ),
@@ -174,9 +175,9 @@ const UserProfile = () => {
                     {
                       label: (
                         <>
-                          <p className="mb-0">
+                          <p className="mb-0 d-flex align-items-center">
                             {" "}
-                            <i className="fas fa-credit-card me-2"></i> Mis tarjetas{" "}
+                            <CreditCardIcon className="me-2" size={16} /> Mis tarjetas{" "}
                           </p>
                         </>
                       ),

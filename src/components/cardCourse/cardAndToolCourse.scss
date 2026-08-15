@@ -1,68 +1,111 @@
 .card-container {
-    width: 250px;
-    min-height: 350px;
-    max-height: 250px;
-    background-color: #303035;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 3px 2px 8px 2px #303035;
+    width: 280px;
+    min-height: 380px;
+    background-color: #242428;
+    padding: 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
 }
 
-
-.card-image{
-    border-radius: 3px;
-    // overflow: hidden;
-    height: 140px;
+.card-image {
+    width: 100%;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
     
     img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(to top, #242428, transparent);
     }
 }
 
-.card-content{
-    // background-color: #f2f2f2;
+.card-container:hover .card-image img {
+    transform: scale(1.08);
+}
+
+.card-content {
     color: #ffffff;
-    backdrop-filter: blur(10px)
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+
+    header p a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s;
+        line-height: 1.3;
+        display: block;
+        
+        &:hover {
+            color: #6366f1;
+        }
+    }
 }
 
-.card-discount{
-    color: #ffffff30;
+.card-discount {
+    color: #888;
     text-decoration: line-through;
+    font-size: 0.8em;
+    margin-left: 0.4rem;
 }
 
-.card-students, .card-teacher{
-    color: #ffffff30;
+.card-students, .card-teacher {
+    color: #a0a0a5;
 }
 
-
-
-.react-multi-carousel-track{ // ESTA CLASE PERTENECE A REACT-MULTI-CAROUSEL... LA LIBRERIA
-    padding: 15px;
+.react-multi-carousel-track {
+    padding: 20px 15px;
     background-color: transparent;
 }
 
-
 // =================
 // TOOLTIP
-.tool-container{
+.tool-container {
     width: 350px;
     max-width: 400px;
-    background: #303035;
-    border: 2px solid #1818b1;
-    border-radius: 3px;
+    background: #242428;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem !important;
 }
 
-.tool-short-desc{
-    border-top: 1px solid #1818b1;
-    border-bottom: 1px solid #1818b1;
+.tool-short-desc {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 0;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #d1d5db;
 }
 
-
-.ant-tooltip-hidden-own{ //sobre escribe la clase de abajo...
-    
-        .ant-tooltip-hidden{
-            display: none;
-        }
-    
+.ant-tooltip-hidden-own {
+    .ant-tooltip-hidden {
+        display: none;
+    }
 }

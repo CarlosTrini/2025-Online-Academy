@@ -5,6 +5,7 @@ import { isNil } from "lodash";
 import './cardAndToolCourse.scss';
 import { CartContextHook } from "../../context/CartContextProvider";
 import { addToFavorites } from "../../helpers/favoritesActions";
+import { ChevronRight, Plus, Heart } from "lucide-react";
 
 type propsT = cardCourseT & {
   open: boolean;
@@ -30,20 +31,17 @@ const TooltipCard:React.FC<propsT> = (infoCard) => {
   } = infoCard;
 
   const {updateCartCtx} = useContext(CartContextHook);
-  const [levelArrows, setLevelArrows] = useState<string[]>([]);
+  const [levelArrows, setLevelArrows] = useState<boolean[]>([]);
 
   const makeLevelArrows = () => {
     // 'Básico', 'Intermedio', 'Avanzado',
-    const emptyArrows = 'fa-solid fa-caret-right text-secondary';
-    const fillArrows = 'fa-solid fa-caret-right text-warning';
-    
     const levelObj = {
-      'Básico': [fillArrows, emptyArrows, emptyArrows], 
-      'Intermedio': [fillArrows, fillArrows, emptyArrows],  
-      'Avanzado': [fillArrows, fillArrows, fillArrows],
+      'Básico': [true, false, false], 
+      'Intermedio': [true, true, false],  
+      'Avanzado': [true, true, true],
     };
 
-    setLevelArrows(levelObj[level]);
+    setLevelArrows(levelObj[level as keyof typeof levelObj]);
   }
 
   useEffect(() => {
@@ -69,13 +67,15 @@ const TooltipCard:React.FC<propsT> = (infoCard) => {
             </p>
           </div>
     
-          <div className="my-2">
-            <p className="mb-0 fs-14">
-              Nivel
-              <span className="fw-bold"> {level} </span>
-              {levelArrows.map((a) => (
-                <i className={`${a} mr-1`} ></i>
+          <div className="my-3 d-flex align-items-center">
+            <p className="mb-0 fs-14 d-flex align-items-center">
+              <span className="me-2 text-secondary">Nivel</span>
+              <span className="fw-bold me-2"> {level} </span>
+              <span className="d-flex align-items-center" style={{ marginLeft: '-4px' }}>
+              {levelArrows.map((isFilled, i) => (
+                <ChevronRight key={i} size={16} className={`${isFilled ? 'text-warning' : 'text-secondary'}`} style={{ marginLeft: '-8px' }} />
               ))}
+              </span>
             </p>
           </div>
     
@@ -94,8 +94,9 @@ const TooltipCard:React.FC<propsT> = (infoCard) => {
             </ul>
           </div>
     
-          <div className="text-end">
-            <button className="btn btn-outline-primary me-2"
+          <div className="text-end mt-4 d-flex justify-content-end gap-2">
+            <button className="btn btn-primary d-flex align-items-center justify-content-center rounded-pill px-4 shadow-sm"
+              style={{ transition: 'all 0.2s', fontWeight: 500 }}
               onClick={() => {
                 const addCourse = {
                   idCourse,
@@ -110,15 +111,16 @@ const TooltipCard:React.FC<propsT> = (infoCard) => {
                 updateCartCtx(addCourse);
               }}
             >
-              <i className="fas fa-plus me-1 "></i>
+              <Plus size={16} className="me-2" />
               Añadir al carrito
-              </button>
-            <button className="btn btn-outline-danger"
+            </button>
+            <button className="btn btn-outline-danger d-flex align-items-center justify-content-center rounded-circle p-0 shadow-sm"
+              style={{ width: '40px', height: '40px', transition: 'all 0.2s' }}
               onClick={() => {
                 addToFavorites(idCourse);
               }}
             >
-              <i className="fas fa-heart "></i>
+              <Heart size={18} />
             </button>
           </div>
         </div>

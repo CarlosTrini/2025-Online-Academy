@@ -11,15 +11,17 @@ const LoginRegister: React.FC<propsType> = (props) => {
   const { children } = props;
 
   return (
-    <Row>
-        <Col md={8}>
+    <div className="layout-container m-0">
+      <Row className="m-0 h-100">
+        <Col xs={12} md={7} className="p-0 d-none d-md-block">
           <div>
             <div className="img-login" />
           </div>
         </Col>
 
-        <Col md={4}>{children}</Col>
+        <Col xs={12} md={5} lg={5} xl={5} className="p-0 right-col">{children}</Col>
       </Row>
+    </div>
   );
 };
 

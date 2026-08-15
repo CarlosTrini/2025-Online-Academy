@@ -17,9 +17,9 @@ const Dashboard = () => {
             <main className="bg-main">
               <Header />
               <Outlet />
-              <footer className="footer text-center ">
-                <p className="fs-28 text-primary">Online Academy</p>
-                <span className="text-warning">Carlos Trinidad</span>
+              <footer className="footer">
+                <p className="footer-title">Online Academy</p>
+                <span className="footer-subtitle">Carlos Trinidad &copy; {new Date().getFullYear()}</span>
               </footer>
             </main>
           </CartContextProvider>

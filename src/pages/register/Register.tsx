@@ -11,6 +11,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import { Input, Spin } from "antd";
 import { Link } from "react-router-dom";
 import { simpleAlertTimer } from "../../helpers/alerts";
+import { User, Mail, Lock, ArrowLeftCircle, CheckCircle, Type } from "lucide-react";
 import { getStorageArr, getStorageObj, saveStorage } from "../../helpers/storagesFunc";
 import { generateRandomId } from "../../helpers/randomId";
 import { loginDataT, userT } from "../../typesInterfaces/types";
@@ -230,7 +231,7 @@ const Register = () => {
                   id="name"
                   value={inputsValues.name}
                   size="large"
-                  addonAfter={<i className="fas fa-signature text-success" />}
+                  addonAfter={<Type size={18} className="text-success" />}
                   onChange={handleInputs}
                 />
               </Col>
@@ -243,7 +244,7 @@ const Register = () => {
                   id="lastName"
                   value={inputsValues.lastName}
                   size="large"
-                  addonAfter={<i className="fas fa-signature text-success" />}
+                  addonAfter={<Type size={18} className="text-success" />}
                   onChange={handleInputs}
                 />
               </Col>
@@ -258,7 +259,7 @@ const Register = () => {
                 id="user"
                 value={inputsValues.user}
                 size="large"
-                addonAfter={<i className="fas fa-user text-success" />}
+                addonAfter={<User size={18} className="text-success" />}
                 onChange={handleInputs}
               />
             </div>
@@ -272,7 +273,7 @@ const Register = () => {
                 id="email"
                 value={inputsValues.email}
                 size="large"
-                addonAfter={<i className="fas fa-envelope text-success" />}
+                addonAfter={<Mail size={18} className="text-success" />}
                 onChange={handleInputs}
               />
             </div>
@@ -285,7 +286,7 @@ const Register = () => {
                 id="password"
                 value={inputsValues.password}
                 size="large"
-                addonAfter={<i className="fas fa-lock text-success" />}
+                addonAfter={<Lock size={18} className="text-success" />}
                 onChange={handleInputs}
               />
             </div>
@@ -298,7 +299,7 @@ const Register = () => {
                 id="confirmPassword"
                 value={confirmPassInput}
                 size="large"
-                addonAfter={<i className="fas fa-lock text-success" />}
+                addonAfter={<Lock size={18} className="text-success" />}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setConfirmPassInput(e.target.value);
                 }}
@@ -309,6 +310,7 @@ const Register = () => {
             <div className="mt-3 d-flex justify-content-evenly ">
               <Button
                 variant="outline-danger"
+                className="d-flex align-items-center"
                 onClick={() => {
                   handleResetForm();
                   const loginLink = document.getElementById("returnLoginBtn");
@@ -317,7 +319,7 @@ const Register = () => {
                   }
                 }}
               >
-                <i className="fas fa-circle-arrow-left me-1 "></i>
+                <ArrowLeftCircle size={16} className="me-2" />
                 Regresar
                 <Link
                   to={"/login"}
@@ -326,8 +328,8 @@ const Register = () => {
                 ></Link>
               </Button>
 
-              <Button variant="outline-success" onClick={handleRegister}>
-                <i className="fas fa-circle-check me-1"></i>
+              <Button variant="success" className="d-flex align-items-center" onClick={handleRegister}>
+                <CheckCircle size={16} className="me-2" />
                 Registrar
               </Button>
             </div>

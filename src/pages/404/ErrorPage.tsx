@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 
 import notFoundImage from '../../assets/error-404.png';
+import { Home } from "lucide-react";
 
 export default function  ErrorPage() {
 
@@ -30,8 +31,8 @@ export default function  ErrorPage() {
 
       <div className="mt-3">
         <Link to={'/'}>
-          <button className="btn btn-outline-primary">
-            <i className="fas fa-home me-1" ></i>
+          <button className="btn btn-outline-primary d-inline-flex align-items-center justify-content-center">
+            <Home size={18} className="me-2" />
             Ir a la página de inicio
           </button>
         </Link>

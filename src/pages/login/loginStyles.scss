@@ -1,18 +1,74 @@
-
-.img-login-right{
-    width: 150px;
-    height: 150px;
+.img-login-right {
+    width: 120px;
+    height: 120px;
     background: url('../../assets/logo.jpg') center/cover no-repeat;
-    border-radius: 60%;
+    border-radius: 50%;
+    border: 3px solid #6366f1;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    margin-bottom: 1.5rem;
 }
 
-
-.login-inputs{
-    height: 100vh!important;
+.login-inputs {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    background-color: #242428;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    h3 {
+        color: #fff !important;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+    }
+
+    p {
+        color: #a0a0a5;
+    }
+
+    .ant-input-group-wrapper {
+        .ant-input-wrapper {
+
+            .ant-input,
+            .ant-input-password {
+                background-color: #303035;
+                border-color: #404045;
+                color: #fff;
+
+                &::placeholder {
+                    color: #888;
+                }
+
+                &:hover,
+                &:focus {
+                    border-color: #6366f1;
+                    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+                }
+            }
+
+            .ant-input-group-addon {
+                background-color: #303035;
+                border-color: #404045;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    .btn-link a {
+        color: #a0a0a5;
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover {
+            color: #6366f1;
+        }
+    }
 }

@@ -24,19 +24,19 @@ const imgAndText = [
   {
     // img: '../../assets/laptop.jpg',
     // img: "src/assets/laptop.jpg",
-      img: "assets/laptop.jpg",
+    img: "assets/laptop.jpg",
     title: "Sucribete a nuestros cursos",
     desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium fugit, expedita, modi recusandae dignissimos eum, qui vitae officia exercitationem inventore repellat iusto nihil molestiae? Autem dolore adipisci ratione corrupti blanditiis.",
   },
   {
     // img: "src/assets/student.jpg",
-      img: "assets/student.jpg",
+    img: "assets/student.jpg",
     title: "Cientos de estudiantes",
     desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium fugit, expedita, modi recusandae dignissimos eum, qui vitae officia exercitationem inventore repellat iusto nihil molestiae? Autem dolore adipisci ratione corrupti blanditiis.",
   },
   {
     // img: "src/assets/teacher.jpg",
-      img: "assets/teacher.jpg",
+    img: "assets/teacher.jpg",
     title: "¡Profesores de todo el mundo!",
     desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium fugit, expedita, modi recusandae dignissimos eum, qui vitae officia exercitationem inventore repellat iusto nihil molestiae? Autem dolore adipisci ratione corrupti blanditiis.",
   },
@@ -110,7 +110,7 @@ const MainPagePublic = () => {
 
   return (
     <>
-      <section className="carousel-container container">
+      <section className="carousel-container">
         <Carousel
           slidesToShow={1}
           autoplay
@@ -134,10 +134,10 @@ const MainPagePublic = () => {
         </Carousel>
       </section>
 
-      <section className="block-styles mt-2">
+      <section className="block-styles ">
         <div className="text-center">
-          <h3 className="fw-bold">Online Academy</h3>
-          <p className="fs-20">
+          <h3 className="fw-bold fs-36">Online Academy</h3>
+          <p className="fs-18 w-50 mx-auto mt-4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo,
             officia neque odio earum delectus, sint placeat dolorem vitae eum
             hic laudantium debitis maxime
@@ -192,7 +192,7 @@ const MainPagePublic = () => {
                     <img src={c.img} alt="" width={100} />
                   </div>
 
-                  <button className="btn btn-outline-light btn-sm mt-2 popular-btn-link">
+                  <button className="btn btn-outline-light btn-sm mt-2  popular-btn-link">
                     <Link to={`course/by-category/${c.name}`}> Ver más </Link>
                   </button>
                 </div>
@@ -202,7 +202,7 @@ const MainPagePublic = () => {
         </div>
       </section>
 
-      <section className=" section-others container mt-3">
+      <section className=" section-others container mt-3 pb-5">
         <Row className="d-flex align-items-center">
           <Col md={6}>
             <p className="fs-30 fw-bold text-primary">Online Academy</p>

@@ -13,6 +13,7 @@ import { levelT as levelTT } from "../../typesInterfaces/types";
 
 import { Card, Radio, RadioChangeEvent, Spin } from "antd";
 import CardCourse from "../../components/cardCourse/CardCourse";
+import { Home, Users, Star, Clock, Hourglass, Zap, ChevronRight, Eraser } from "lucide-react";
 
 type todosT = levelTT & {
   'Todos': string;
@@ -212,8 +213,10 @@ const InfoByCategory = () => {
   const makeStars = (fill: number) => {
     // DINÁMICO
     const empty = 5 - fill;
-    const totalStars = [...Array(fill).fill('fas fa-star text-warning me-1'), ...Array(empty).fill('fas fa-star text-secondary me-1')];
-    const htmlIcons = totalStars.map(s => <i className={s} ></i>)
+    const totalStars = [...Array(fill).fill(true), ...Array(empty).fill(false)];
+    const htmlIcons = totalStars.map((isFilled, i) => (
+      <Star key={i} size={16} className={isFilled ? "text-warning me-1" : "text-secondary me-1"} fill={isFilled ? "#ffc107" : "none"} />
+    ));
     return htmlIcons;
   }
 
@@ -225,10 +228,12 @@ const InfoByCategory = () => {
     }
     else {
       const empty = 3 - fill;
-      total = [...Array(fill).fill('fas fa-caret-right text-dark me-1'), ...Array(empty).fill('fas fa-caret-right text-50 me-1  ')];
+      total = [...Array(fill).fill(true), ...Array(empty).fill(false)];
     }
 
-    const htmlIcons = total.map(s => <i className={s} ></i>);
+    const htmlIcons = total.map((isFilled, i) => (
+      <ChevronRight key={i} size={16} className={isFilled ? "text-dark me-1" : "text-50 me-1"} />
+    ));
     return htmlIcons;
   }
 
@@ -283,8 +288,8 @@ const InfoByCategory = () => {
           </p>
           <div className="text-center">
             <Link to={"/"}>
-              <button className="btn btn-outline-dark">
-                <i className={"fas fa-home me-2"}></i>
+              <button className="btn btn-outline-dark d-inline-flex align-items-center justify-content-center">
+                <Home size={18} className="me-2" />
                 Página principal
               </button>
             </Link>
@@ -299,7 +304,7 @@ const InfoByCategory = () => {
 
             <section className="w-sections-90">
               <p className="fw-bold fs-28">Cursos: <span className="text-primary">{PARAMS.courseCategoryName} </span></p>
-              <p><i className="fas fa-users text-primary me-2"></i> <span className="fw-bold fs-18">{students}{' '}</span> Estudiantes en esta categoría. </p>
+              <p className="d-flex align-items-center"><Users size={20} className="text-primary me-2" /> <span className="fw-bold fs-18">{students}{' '}</span> Estudiantes en esta categoría. </p>
             </section>
 
             <section className="w-sections-90 category-main">
@@ -307,7 +312,7 @@ const InfoByCategory = () => {
                 <div>
                   <Card
                     title={
-                      <p className="mb-0 fw-bold"><i className="fas fa-star text-50 me-2" ></i> Valoración</p>
+                      <p className="mb-0 fw-bold d-flex align-items-center"><Star size={18} className="text-50 me-2" /> Valoración</p>
                     }
                     bordered={true}
                     style={{ width: 250 }}
@@ -332,7 +337,7 @@ const InfoByCategory = () => {
                 <div className="my-3">
                 <Card
                   title={
-                    <p className="mb-0 fw-bold"><i className="fas fa-clock text-50 me-2" ></i> Duración</p>
+                    <p className="mb-0 fw-bold d-flex align-items-center"><Clock size={18} className="text-50 me-2" /> Duración</p>
                   }
                   bordered={true}
                   style={{ width: 250 }}
@@ -345,12 +350,12 @@ const InfoByCategory = () => {
                           value: e.target.value
                         });
                       }} value={filters.duration}>
-                        <Radio value={'1-5'}> <i className="fa-solid fa-hourglass-start text-dark me-1 "></i> Entre 1-5 horas</Radio>
-                        <Radio value={'5-10'}> <i className="fa-solid fa-hourglass-start text-dark me-1 "></i> Entre 5-10 horas</Radio>
-                        <Radio value={'10-20'}> <i className="fa-solid fa-hourglass-start text-dark me-1 "></i> Entre 10-20 horas</Radio>
-                        <Radio value={'20-30'}> <i className="fa-solid fa-hourglass-start text-dark me-1 "></i> Entre 20-30 horas</Radio>
-                        <Radio value={'30-100'}> <i className="fa-solid fa-hourglass-start text-dark me-1 "></i> Entre 30-100 horas</Radio>
-                        <Radio value={'0-100'}> <i className="fa-solid fa-hourglass-start text-dark me-1 "></i> Cualquier duración</Radio>
+                        <Radio value={'1-5'} className="d-flex align-items-center"> <Hourglass size={14} className="text-dark me-1" /> Entre 1-5 horas</Radio>
+                        <Radio value={'5-10'} className="d-flex align-items-center"> <Hourglass size={14} className="text-dark me-1" /> Entre 5-10 horas</Radio>
+                        <Radio value={'10-20'} className="d-flex align-items-center"> <Hourglass size={14} className="text-dark me-1" /> Entre 10-20 horas</Radio>
+                        <Radio value={'20-30'} className="d-flex align-items-center"> <Hourglass size={14} className="text-dark me-1" /> Entre 20-30 horas</Radio>
+                        <Radio value={'30-100'} className="d-flex align-items-center"> <Hourglass size={14} className="text-dark me-1" /> Entre 30-100 horas</Radio>
+                        <Radio value={'0-100'} className="d-flex align-items-center"> <Hourglass size={14} className="text-dark me-1" /> Cualquier duración</Radio>
                     </Radio.Group>
                 </Card>
                 </div>
@@ -359,7 +364,7 @@ const InfoByCategory = () => {
                 <div className="">
                 <Card
                   title={
-                    <p className="mb-0 fw-bold"><i className="fas fa-bolt text-50 me-2" ></i> Nivel</p>
+                    <p className="mb-0 fw-bold d-flex align-items-center"><Zap size={18} className="text-50 me-2" /> Nivel</p>
                   }
                   bordered={true}
                   style={{ width: 250 }}
@@ -385,11 +390,11 @@ const InfoByCategory = () => {
                         areFiltersActive === true && (
                           <div className="text-center mt-3">
                             <button 
-                              className="btn btn-outline-danger"
+                              className="btn btn-outline-danger d-inline-flex align-items-center justify-content-center"
                               onClick={() => {
                                 handleResetFIlters();
                               }}
-                              > <i className="fas fa-eraser me-1" ></i> Eliminar filtros </button>
+                              > <Eraser size={18} className="me-2" /> Eliminar filtros </button>
                           </div>
 
                         )

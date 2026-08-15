@@ -1,4 +1,29 @@
-.img-login{
+.layout-container {
+    background-color: #1a1a1d;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.img-login {
     height: 100vh;
     background: url('../../assets/login-bg.png') center/cover no-repeat;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, #1a1a1d);
+    }
+}
+
+.right-col {
+    background-color: #1a1a1d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }

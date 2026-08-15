@@ -6,6 +6,7 @@ import { simpleAlertTimer } from "../../../helpers/alerts";
 import bcryptjs from "bcryptjs";
 import { getStorageArr, saveStorage } from "../../../helpers/storagesFunc";
 import { namesStorage } from "../../../initData/namesStorage";
+import { Type, User, Mail, Key, Eye, Camera, Trash2, Save } from "lucide-react";
 
 import "../userProfile.scss";
 
@@ -241,7 +242,7 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
               size="large"
               addonBefore={
                 <>
-                  <i className="fas fa-signature text-primary"></i>
+                  <Type size={16} className="text-primary" />
                 </>
               }
               placeholder="Nombre"
@@ -262,7 +263,7 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
               className="mt-3"
               addonBefore={
                 <>
-                  <i className="fas fa-signature text-primary"></i>
+                  <Type size={16} className="text-primary" />
                 </>
               }
               placeholder="Apellidos"
@@ -283,7 +284,7 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
               className="mt-3"
               addonBefore={
                 <>
-                  <i className="fas fa-user text-primary"></i>
+                  <User size={16} className="text-primary" />
                 </>
               }
               placeholder="Usuario"
@@ -304,7 +305,7 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
               className="mt-3"
               addonBefore={
                 <>
-                  <i className="fas fa-envelope text-primary"></i>
+                  <Mail size={16} className="text-primary" />
                 </>
               }
               placeholder="Correo electrónico"
@@ -326,18 +327,18 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
               className="mt-3"
               addonBefore={
                 <>
-                  <i className="fas fa-key text-primary"></i>
+                  <Key size={16} className="text-primary" />
                 </>
               }
               addonAfter={
                 <>
                   <button
-                    className="btn"
+                    className="btn p-0 d-flex align-items-center justify-content-center"
                     onClick={() => {
                       showPassword("password");
                     }}
                   >
-                    <i className="fas fa-eye text-primary"></i>
+                    <Eye size={16} className="text-primary" />
                   </button>
                 </>
               }
@@ -360,19 +361,19 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
               className="mt-3"
               addonBefore={
                 <>
-                  <i className="fas fa-key text-primary"></i>
-                  <i className="fas fa-key text-primary"></i>
+                  <Key size={16} className="text-primary me-1" />
+                  <Key size={16} className="text-primary" />
                 </>
               }
               addonAfter={
                 <>
                   <button
-                    className="btn"
+                    className="btn p-0 d-flex align-items-center justify-content-center"
                     onClick={() => {
                       showPassword("confirmPassword");
                     }}
                   >
-                    <i className="fas fa-eye text-primary"></i>
+                    <Eye size={16} className="text-primary" />
                   </button>
                 </>
               }
@@ -426,21 +427,21 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
 
             <div className="mt-3 text-center">
               <button
-                className="btn btn-outline-dark"
+                className="btn btn-outline-dark d-inline-flex align-items-center justify-content-center"
                 onClick={() => {
                   inputRef.current?.click();
                 }}
               >
-                <i className="fas fa-camera me-1"></i>
+                <Camera size={16} className="me-2" />
                 Nueva foto de perfil
               </button>
             </div>
           </div>
         </section>
 
-        <div className="mt-3 text-end">
+        <div className="mt-3 text-end d-flex justify-content-end gap-2">
           <button
-            className="btn btn-outline-danger me-2"
+            className="btn btn-outline-danger d-inline-flex align-items-center justify-content-center"
             style={{
               cursor: isUpdateActive === false ? "not-allowed" : "pointer",
             }}
@@ -449,11 +450,11 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
               resetInfo();
             }}
           >
-            <i className="fas fa-trash me-2"></i>
+            <Trash2 size={16} className="me-2" />
             Borrar cambios
           </button>
           <button
-            className="btn btn-outline-primary"
+            className="btn btn-primary d-inline-flex align-items-center justify-content-center"
             style={{
               cursor: isUpdateActive === false ? "not-allowed" : "pointer",
             }}
@@ -462,7 +463,7 @@ const TabInfo: React.FC<props> = ({ userInfo, callback }) => {
               saveInfo();
             }}
           >
-            <i className="fas fa-save me-2"></i>
+            <Save size={16} className="me-2" />
             Guardar cambios
           </button>
         </div>

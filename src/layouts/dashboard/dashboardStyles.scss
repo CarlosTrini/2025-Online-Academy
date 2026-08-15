@@ -1,29 +1,48 @@
-
-
-
-
-
 //  -------------------------------------------------------------------------------
 //   ESTILOS DEL BG
-.bg-main {
-    
-    padding-top: 80px; // los primeros 70px son porque el header mide 70px de alto, y esta en position: fixed;
-    position: relative; // para que el footer no haga cosas raras
-    padding-bottom: 120px; //los primero 150px es lo que mide el footer de alto
-    min-height: 100vh;
-	// background: rgb(232,232,232);
-    // background: linear-gradient(360deg, rgba(232,232,232,1) 0%, rgba(180,160,255,1) 100%);
-}
+// .bg-main {
+
+// padding-top: 70px; // los primeros 70px son porque el header mide 70px de alto, y esta en position: fixed;
+// position: relative; // para que el footer no haga cosas raras
+// padding-bottom: 120px; //los primero 150px es lo que mide el footer de alto
+// min-height: 100vh;
+// background: rgb(232,232,232);
+// background: linear-gradient(360deg, rgba(232,232,232,1) 0%, rgba(180,160,255,1) 100%);
+// }
 
 
-.footer{
-    position: absolute;
-    bottom: 0;
+.footer {
+    position: relative;
     width: 100%;
-    height: 100px;
+    padding: 2.5rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #303035;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-light);
+    color: var(--text-muted);
+    text-align: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    
+    .footer-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 0;
+    }
+    
+    .footer-subtitle {
+        color: var(--primary);
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    @media (max-width: 576px) {
+        padding: 2rem 1rem;
+        .footer-title {
+            font-size: 1.25rem;
+        }
+    }
 }

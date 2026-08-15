@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "../userProfile.scss";
 import { Tooltip } from "antd";
 import { addToFavorites, delToFavorites } from "../../../helpers/favoritesActions";
+import { Eye, Heart, HeartOff } from "lucide-react";
 import { getStorageArr } from "../../../helpers/storagesFunc";
 import { namesStorage } from "../../../initData/namesStorage";
 
@@ -57,15 +58,15 @@ const LongCard: React.FC<propsT> = ({ course, isFavoriteTab, callback }) => {
           <div className="align-self-end flex-grow-1 text-end">
             <Tooltip title="Ver">
               <Link to={`/course/by-name/${course.title}`}>
-                <button className="btn btn-primary me-2">
-                  <i className="fas fa-eye"></i>
+                <button className="btn btn-primary me-2 d-inline-flex align-items-center justify-content-center">
+                  <Eye size={18} />
                 </button>
               </Link>
             </Tooltip>
             {isFavoriteTab === false && (
               <Tooltip title="Añadir a favoritos">
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-danger d-inline-flex align-items-center justify-content-center"
                   onClick={() => {
                     addToFavorites(course.id);
                     setTimeout(() => {
@@ -73,14 +74,14 @@ const LongCard: React.FC<propsT> = ({ course, isFavoriteTab, callback }) => {
                     },1400);
                   }}
                 >
-                  <i className="fas fa-heart"></i>
+                  <Heart size={18} />
                 </button>
               </Tooltip>
             )}
             {isFavoriteTab === true && (
               <Tooltip title="Eliminar de favoritos"
               >
-                <button className="btn btn-warning"
+                <button className="btn btn-warning d-inline-flex align-items-center justify-content-center"
                     onClick={() => {
                         delToFavorites(course.id);
                         setTimeout(() => {
@@ -89,7 +90,7 @@ const LongCard: React.FC<propsT> = ({ course, isFavoriteTab, callback }) => {
                         
                     }}
                 >
-                  <i className="fa-solid fa-heart-circle-minus"></i>
+                  <HeartOff size={18} />
                 </button>
               </Tooltip>
             )}

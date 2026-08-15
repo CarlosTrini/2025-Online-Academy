@@ -1,115 +1,107 @@
-
+:root {
+  /* Colors */
+  --primary: #4f46e5;       /* Deep Indigo */
+  --primary-hover: #4338ca;
+  --secondary: #0ea5e9;     /* Light Blue */
+  --bg-main: #f8fafc;       /* Slate 50 */
+  --bg-card: #ffffff;       /* White */
+  --text-main: #0f172a;     /* Slate 900 */
+  --text-muted: #64748b;    /* Slate 500 */
+  --text-light: #f1f5f9;    /* Slate 100 */
+  --border-light: #e2e8f0;  /* Slate 200 */
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-smooth: 0.3s ease-in-out;
+  
+  /* Radii */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
 
 a {
     color: inherit;
     border: none;
     text-decoration: none;
+    transition: color var(--transition-fast);
 
     &:hover{
-        color: inherit;
+        color: var(--primary);
     }
 }
 
-.w-sections{
-    width: 60%;
-    margin: 10px auto;
+/* Base Utility Classes */
+.w-sections {
+    width: 100%;
+    max-width: 1200px; /* Constrain max width for ultra-wide screens */
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-.w-sections-90{
+.w-sections-90 {
     width: 90%;
-    margin: 10px auto;
+    max-width: 1400px;
+    margin: 2rem auto;
 }
 
-.text-50{
-    color: #30303550;
+/* Colors */
+.text-50 {
+    color: var(--text-muted);
 }
 
-.text-white-op{
-    color: #575762;
+.text-white-op {
+    color: var(--text-muted);
 }
 
-.t-font-white{
-    color: #ffffff50;
+.t-font-white {
+    color: var(--text-light);
 }
 
-.fs-36 {
-    font-size: 36px;
-}
-.fs-34 {
-    font-size: 34px;
-}
-.fs-32 {
-    font-size: 32px;
-}
-.fs-30 {
-    font-size: 30px;
-}
-.fs-28 {
-    font-size: 28px;
-}
-
-.fs-26 {
-    font-size: 26px;
-}
-.fs-24{
-    font-size: 24px;
-}
-
-.fs-22{
-    font-size: 22px;
-}
-
-.fs-20{
-    font-size: 20px;
-}
-
-.fs-18{
-    font-size: 18px;
-}
-
-.fs-16{
-    font-size: 16px;
-}
-
-.fs-15{
-    font-size: 15px;
-}
-
-.fs-14{
-    font-size: 14px;
-}
-
-.fs-12{
-    font-size: 12px;
-}
-
-.fs-10{
-    font-size: 10px;
-}
+/* Typography Scale */
+.fs-36 { font-size: 2.25rem; line-height: 2.5rem; }
+.fs-34 { font-size: 2.125rem; line-height: 2.5rem; }
+.fs-32 { font-size: 2rem; line-height: 2.25rem; }
+.fs-30 { font-size: 1.875rem; line-height: 2.25rem; }
+.fs-28 { font-size: 1.75rem; line-height: 2rem; }
+.fs-26 { font-size: 1.625rem; line-height: 2rem; }
+.fs-24 { font-size: 1.5rem; line-height: 2rem; }
+.fs-22 { font-size: 1.375rem; line-height: 1.75rem; }
+.fs-20 { font-size: 1.25rem; line-height: 1.75rem; }
+.fs-18 { font-size: 1.125rem; line-height: 1.75rem; }
+.fs-16 { font-size: 1rem; line-height: 1.5rem; }
+.fs-15 { font-size: 0.9375rem; line-height: 1.5rem; }
+.fs-14 { font-size: 0.875rem; line-height: 1.25rem; }
+.fs-12 { font-size: 0.75rem; line-height: 1rem; }
+.fs-10 { font-size: 0.625rem; line-height: 1rem; }
 
 // carousel de react-multi-carousel
-.w-auto{ //esto es par que las cards del carousel no esten tan separadas como por defectos... en espcial el width
+.w-auto { 
     width: auto;
-    margin-right: 25px;
+    margin-right: 1.5rem;
 }
 
+/* Custom Scrollbar Styling - Modernized */
+::-webkit-scrollbar {
+  width: 8px; /* Thinner */
+  height: 8px;
+}
 
-  /* Seleccionamos la barra del scroll */
-  ::-webkit-scrollbar {
-    margin-left: 10px;
-    width: 12px; /* Anchura de la barra */
-    background-color: #30303550; /* Fondo color */
-    border-radius: 10px; /* Curva del borde */
-  }
-  
-  /* Seleccionamos el elemento de la barra */
-  ::-webkit-scrollbar-thumb {
-    background-color: #3838df50; /* Color de la barra */
-    border-radius: 10px; /* Curva del borde */
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Sombra */
-  }
-  
-  /* Seleccionamos el estado hover de la barra */
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #01019b80; /* Cambiamos el color en hover */
-  }
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1; /* Slate 300 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8; /* Slate 400 */
+}

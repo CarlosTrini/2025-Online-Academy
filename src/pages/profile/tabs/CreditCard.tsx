@@ -14,6 +14,7 @@ import { getStorageArr, saveStorage } from "../../../helpers/storagesFunc";
 import { namesStorage } from "../../../initData/namesStorage";
 import CreditCardModal from "../../../components/creditCard.tsx/CreditCardModal";
 import { cardT, typeUserCategory, userT } from "../../../typesInterfaces/types";
+import { Plus, CheckCircle, Pointer, Eye, EyeOff, Trash2 } from "lucide-react";
 
 type propsT = {
   userInfo: userT;
@@ -171,13 +172,13 @@ const CreditCard: React.FC<propsT> = (props) => {
                 </p>
                 <div className="mt-3">
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary d-inline-flex align-items-center justify-content-center"
                     onClick={() => {
                       setShowModal(true);
                     }}
                   >
                     {" "}
-                    <i className="fas fa-plus"></i> Agregar
+                    <Plus size={16} className="me-2" /> Agregar
                   </button>
                 </div>
               </div>
@@ -273,7 +274,7 @@ const CreditCard: React.FC<propsT> = (props) => {
                                     />
                                     <div className="mt-3 text-end">
                                       <button
-                                        className="btn btn-outline-warning btn-sm"
+                                        className="btn btn-outline-warning btn-sm d-inline-flex align-items-center justify-content-center"
                                         onClick={() => {
                                           const isCorrectPass = checkPass(
                                             userPass,
@@ -299,7 +300,7 @@ const CreditCard: React.FC<propsT> = (props) => {
                                         }}
                                       >
                                         {" "}
-                                        <i className="fas fa-circle-check me-1"></i>{" "}
+                                        <CheckCircle size={16} className="me-1" />{" "}
                                         Continuar
                                       </button>
                                     </div>
@@ -309,10 +310,10 @@ const CreditCard: React.FC<propsT> = (props) => {
                               className="me-2"
                             >
                               <button
-                                className="btn btn-outline-success"
+                                className="btn btn-outline-success d-inline-flex align-items-center justify-content-center"
                                 onClick={() => {}}
                               >
-                                <i className="fas fa-hand-pointer"> </i>
+                                <Pointer size={18} />
                               </button>
                             </Tooltip>
                           </>
@@ -343,7 +344,7 @@ const CreditCard: React.FC<propsT> = (props) => {
                                   />
                                   <div className="mt-3 text-end">
                                     <button
-                                      className="btn btn-outline-warning btn-sm"
+                                      className="btn btn-outline-warning btn-sm d-inline-flex align-items-center justify-content-center"
                                       onClick={() => {
                                         const isCorrectPass = checkPass(
                                           userPass,
@@ -364,7 +365,7 @@ const CreditCard: React.FC<propsT> = (props) => {
                                       }}
                                     >
                                       {" "}
-                                      <i className="fas fa-circle-check me-1"></i>{" "}
+                                      <CheckCircle size={16} className="me-1" />{" "}
                                       Continuar
                                     </button>
                                   </div>
@@ -374,10 +375,10 @@ const CreditCard: React.FC<propsT> = (props) => {
                             className="me-2"
                           >
                             <button
-                              className="btn btn-danger"
+                              className="btn btn-danger d-inline-flex align-items-center justify-content-center"
                               onClick={() => {}}
                             >
-                              <i className="fas fa-eye"> </i>
+                              <Eye size={18} />
                             </button>
                           </Tooltip>
                         )}
@@ -390,7 +391,7 @@ const CreditCard: React.FC<propsT> = (props) => {
                             className="me-2"
                           >
                             <button
-                              className="btn btn-primary"
+                              className="btn btn-primary d-inline-flex align-items-center justify-content-center"
                               onClick={() => {
                                 // showInfoCard(c.id);
                                 if (isNil(c.id) === false) {
@@ -398,7 +399,7 @@ const CreditCard: React.FC<propsT> = (props) => {
                                 }
                               }}
                             >
-                              <i className="fas fa-eye"> </i>
+                              <EyeOff size={18} />
                             </button>
                           </Tooltip>
                         )}
@@ -450,7 +451,7 @@ const CreditCard: React.FC<propsT> = (props) => {
                                       }}
                                     >
                                       {" "}
-                                      <i className="fas fa-circle-check me-1"></i>{" "}
+                                      <CheckCircle size={16} className="me-2" />{" "}
                                       Continuar
                                     </button>
                                   </div>
@@ -460,7 +461,7 @@ const CreditCard: React.FC<propsT> = (props) => {
                             className="me-2"
                           >
                             <button className="btn btn-dark" onClick={() => {}}>
-                              <i className="fas fa-trash"> </i>
+                              <Trash2 size={16} />
                             </button>
                           </Tooltip>
                         )}
@@ -471,13 +472,13 @@ const CreditCard: React.FC<propsT> = (props) => {
               })}
               <div className="mt-3 text-end">
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary d-inline-flex align-items-center justify-content-center"
                   onClick={() => {
                     setShowModal(true);
                   }}
                 >
                   {" "}
-                  <i className="fas fa-plus"></i> Agregar
+                  <Plus size={16} className="me-2" /> Agregar
                 </button>
               </div>
             </>

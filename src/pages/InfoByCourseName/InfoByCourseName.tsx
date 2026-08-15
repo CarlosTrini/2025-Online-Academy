@@ -14,6 +14,7 @@ import commentsImg from "../../assets/comments-section.png";
 import { Tag, Collapse as CollapseAntd, Modal, Input, Radio, Spin, RadioChangeEvent } from "antd";
 import { Collapse } from "reactstrap";
 import { Col, Row } from "react-bootstrap";
+import { BookOpen, Home, ChevronRight, Info, Clock, Tag as TagIcon, Coins, ShoppingCart, ChevronUp, ChevronDown, Check, MessageCircle, UserCircle, Star, Users, Book, GraduationCap, Feather, X, Send } from "lucide-react";
 
 import noPictureImg from "../../assets/teachers.svg";
 import { CartContextHook } from "../../context/CartContextProvider";
@@ -127,7 +128,7 @@ const InfoByCourseName = () => {
 
   const [courseInfo, setCourseInfo] = useState(initDataCourseInfo);
   
-  const [score, setScore] = useState({ qty: 0, stars: ["", "", "", "", ""] });
+  const [score, setScore] = useState({ qty: 0, stars: [false, false, false, false, false] });
 
   const [average, setAverage] = useState({
     mark: 0,
@@ -158,23 +159,18 @@ const InfoByCourseName = () => {
     const fillS = score;
     const emptyS = 5 - fillS;
 
-    const star = "fas fa-star";
-    const fillClass = `${star} text-warning`;
-    const emptyClass = `${star} text-white-op`;
+    const starsArr = [
+      ...Array(fillS).fill(true),
+      ...Array(emptyS).fill(false),
+    ];
 
     if (isForComentSection === true) {
-      return [
-        ...Array(fillS).fill(fillClass),
-        ...Array(emptyS).fill(emptyClass),
-      ];
+      return starsArr;
     }
 
     setScore({
       qty: score,
-      stars: [
-        ...Array(fillS).fill(fillClass),
-        ...Array(emptyS).fill(emptyClass),
-      ],
+      stars: starsArr,
     });
   };
 
@@ -312,9 +308,9 @@ const InfoByCourseName = () => {
                 return (
                   <>
                     <div className="d-flex justify-content-between ">
-                      <p>
+                      <p className="d-flex align-items-center">
                         {" "}
-                        <i className="fas fa-book-open me-2 text-primary" />{" "}
+                        <BookOpen size={16} className="me-2 text-primary" />{" "}
                         {chap.title}{" "}
                       </p>
                       <p className="text-secondary fw-bold">
@@ -379,8 +375,8 @@ const InfoByCourseName = () => {
           </p>
           <div className="text-center">
             <Link to={"/"}>
-              <button className="btn btn-outline-dark">
-                <i className={"fas fa-home"}></i>
+              <button className="btn btn-outline-dark d-inline-flex align-items-center justify-content-center">
+                <Home size={18} className="me-2" />
                 Página principal
               </button>
             </Link>
@@ -393,9 +389,9 @@ const InfoByCourseName = () => {
             <header className="header-container ">
               <div className="header-info">
                 <div>
-                  <p>
+                  <p className="d-flex align-items-center">
                     Categoría
-                    <i className="fas fa-caret-right text-warning mx-2"></i>
+                    <ChevronRight size={18} className="text-warning mx-2" />
                     <Link to={`/course/by-category/${courseInfo.category}`}>
                       <span className="fw-bold text-primary">
                         {courseInfo.category}
@@ -406,16 +402,18 @@ const InfoByCourseName = () => {
                 <h3 className="fw-bold fs-36">{courseInfo.title}</h3>
                 <p>{courseInfo.shortDescription}</p>
 
-                <div className="d-flex">
-                  <p className="me-4">
+                <div className="d-flex align-items-center">
+                  <p className="me-4 d-flex align-items-center mb-0">
                     {" "}
                     {score.qty}{" "}
-                    {score.stars.map((s) => (
-                      <i className={s}></i>
-                    ))}
+                    <span className="ms-2 d-flex">
+                      {score.stars.map((isFilled, i) => (
+                        <Star key={i} size={16} className={isFilled ? "text-warning" : "text-white-50"} fill={isFilled ? "#ffc107" : "none"} />
+                      ))}
+                    </span>
                   </p>
 
-                  <p>{courseInfo.students} estudiantes</p>
+                  <p className="mb-0">{courseInfo.students} estudiantes</p>
                 </div>
 
                 <p>
@@ -425,28 +423,30 @@ const InfoByCourseName = () => {
                   </span>
                 </p>
 
-                <p>
-                  <i className="fas fa-circle-info me-2 text-white"></i>
+                <p className="d-flex align-items-center">
+                  <Info size={16} className="me-2 text-white" />
                   Última Actualización:{" "}
-                  <span className="fw-bold"> {courseInfo.lastUpdated} </span>
+                  <span className="fw-bold ms-1"> {courseInfo.lastUpdated} </span>
                 </p>
 
-                <p>
-                  <i className="fas fa-clock me-2 text-white"></i>
+                <p className="d-flex align-items-center">
+                  <Clock size={16} className="me-2 text-white" />
                   Duración de:{" "}
-                  <span className="fw-bold">
+                  <span className="fw-bold ms-1">
                     {" "}
                     {courseInfo.courseDuration} hrs{" "}
                   </span>
                 </p>
 
                 <div className=" tags-container">
-                  {courseInfo.tags.map((tag) => {
+                  {courseInfo.tags.map((tag, i) => {
                     return (
-                      <Tag color="#0D6EFD">
+                      <Tag color="#0D6EFD" key={i}>
                         {/* <p className="badge text-bg-primary"> */}
-                        <i className="fas fa-tag me-1"></i>
-                        {tag}
+                        <div className="d-flex align-items-center">
+                          <TagIcon size={14} className="me-1" />
+                          {tag}
+                        </div>
                         {/* </p> */}
                       </Tag>
                     );
@@ -459,26 +459,26 @@ const InfoByCourseName = () => {
                   <img src={courseInfo.image} alt={courseInfo.title} />
                 </div>
                 <div>
-                  <p className="fs-24 fw-bold mb-0 price">
+                  <p className="fs-24 fw-bold mb-0 price d-flex align-items-center">
                     {courseInfo.discountPrice === "0" ||
                     courseInfo.discountPrice === "" ? (
                       <>${courseInfo.price} MX </>
                     ) : (
                       <>
                         ${courseInfo.discountPrice} MX{" "}
-                        <span className="fs-18 fw-normal text-50">
+                        <span className="fs-18 fw-normal text-50 ms-2">
                           ${courseInfo.price}
                         </span>{" "}
                       </>
                     )}
-                    <i className="fas fa-coins text-warning ms-2"></i>{" "}
+                    <Coins size={20} className="text-warning ms-2" />{" "}
                   </p>
                   <p className="fs-16 text-50">
                     aprovecha la temporada de descuentos
                   </p>
                   <div className="text-end">
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-primary d-inline-flex align-items-center justify-content-center"
                       onClick={() => {
                         updateCartCtx({
                           idCourse: courseInfo.id,
@@ -493,7 +493,7 @@ const InfoByCourseName = () => {
                         });
                       }}
                     >
-                      <i className="fas fa-cart-plus me-2"></i>
+                      <ShoppingCart size={18} className="me-2" />
                       Añadir al carrito
                     </button>
                   </div>
@@ -519,7 +519,7 @@ const InfoByCourseName = () => {
                       {/* este boton solo aparecerá si hay más de 6 skills */}
                       {isEmpty(skills.partTwo) === false && (
                         <button
-                          className="btn btn-link text-primary"
+                          className="btn btn-link text-primary d-inline-flex align-items-center justify-content-center"
                           onClick={() => {
                             setShowSkills(!showSkills);
                           }}
@@ -528,13 +528,13 @@ const InfoByCourseName = () => {
                             <>
                               {" "}
                               Ver menos{" "}
-                              <i className="fas fa-caret-up ms-2 text-primary"></i>
+                              <ChevronUp size={16} className="ms-2 text-primary" />
                             </>
                           ) : (
                             <>
                               {" "}
                               Ver más{" "}
-                              <i className="fas fa-caret-down ms-2 text-primary"></i>
+                              <ChevronDown size={16} className="ms-2 text-primary" />
                             </>
                           )}
                         </button>
@@ -547,9 +547,10 @@ const InfoByCourseName = () => {
                           <Col
                             className="p-2 d-flex align-items-center "
                             md={6}
+                            key={i}
                           >
-                            <i className="fas fa-check text-50 me-2"></i>
-                            <p> {s} </p>
+                            <Check size={16} className="text-50 me-2" />
+                            <p className="mb-0"> {s} </p>
                           </Col>
                         );
                       })}
@@ -557,15 +558,16 @@ const InfoByCourseName = () => {
                     {isEmpty(skills.partTwo) === false && (
                       <Collapse isOpen={showSkills}>
                         <Row className="">
-                          {skills.partTwo.map((s) => {
+                          {skills.partTwo.map((s, i) => {
                             return (
                               <Col
-                                className="p-2 d-flex align-items-center "
-                                md={6}
-                              >
-                                <i className="fas fa-check text-50 me-2"></i>
-                                <p> {s} </p>
-                              </Col>
+                              className="p-2 d-flex align-items-center "
+                              md={6}
+                              key={i}
+                            >
+                              <Check size={16} className="text-50 me-2" />
+                              <p className="mb-0"> {s} </p>
+                            </Col>
                             );
                           })}
                         </Row>
@@ -615,7 +617,7 @@ const InfoByCourseName = () => {
                 </div>
                 <div>
                   <button
-                    className="btn btn-outline-primary"
+                    className="btn btn-outline-primary d-inline-flex align-items-center justify-content-center"
                     onClick={() => {
                       if (isAuth === false || isNil(isAuth) === true) {
                         return simpleAlertTimer({
@@ -627,7 +629,7 @@ const InfoByCourseName = () => {
                       setShowModalComment(true);
                     }}
                   >
-                    <i className="fa-solid fa-comment me-2 "></i>Comentar
+                    <MessageCircle size={18} className="me-2" />Comentar
                   </button>
                 </div>
               </div>
@@ -653,9 +655,9 @@ const InfoByCourseName = () => {
                               {c.userName.toLocaleUpperCase()}
                             </p>
 
-                            <p className="mb-0 me-4">
-                              {makeScore(c.score, true)?.map((s) => (
-                                <i className={s}></i>
+                            <p className="mb-0 me-4 d-flex">
+                              {(makeScore(c.score, true) as boolean[])?.map((isFilled, i) => (
+                                <Star key={i} size={14} className={isFilled ? "text-warning" : "text-secondary"} fill={isFilled ? "#ffc107" : "none"} />
                               ))}
                             </p>
                           </div>
@@ -670,7 +672,7 @@ const InfoByCourseName = () => {
 
                 <div className="text-end">
                   <button
-                    className="btn btn-outline-primary"
+                    className="btn btn-outline-primary d-inline-flex align-items-center justify-content-center"
                     onClick={() => {
                       if (isAuth === false || isNil(isAuth) === true) {
                         return simpleAlertTimer({
@@ -682,7 +684,7 @@ const InfoByCourseName = () => {
                       setShowModalComment(true);
                     }}
                   >
-                    <i className="fa-solid fa-comment me-2 "></i>Comentar
+                    <MessageCircle size={18} className="me-2" />Comentar
                   </button>
                 </div>
               </Spin>
@@ -696,8 +698,8 @@ const InfoByCourseName = () => {
         </div>
 
         <div className="teacher-container p-3">
-          <p className="fw-bold fs-20 mb-0">
-            <i className="fa-solid fa-chalkboard-user me-2 "></i>
+          <p className="fw-bold fs-20 mb-0 d-flex align-items-center">
+            <UserCircle size={22} className="me-2" />
             {teacherInfo.name} {teacherInfo.lastName}
           </p>
           <p className="t-font-white mb-1"> {teacherInfo.typeUser} </p>
@@ -706,33 +708,33 @@ const InfoByCourseName = () => {
               <img src={teacherInfo.picture || noPictureImg} alt="" />
             </div>
             <div>
-              <p>
+              <p className="d-flex align-items-center">
                 {" "}
-                <i className="fas fa-star text-primary me-2"></i> Puntuación
-                promedio : <span>{average.mark}</span>{" "}
+                <Star size={16} className="text-primary me-2" /> Puntuación
+                promedio : <span className="ms-1 fw-bold">{average.mark}</span>{" "}
               </p>
-              <p>
+              <p className="d-flex align-items-center">
                 {" "}
-                <i className="fas fa-comment text-primary me-2"></i>{" "}
-                Comentarios : <span>{average.comments}</span>{" "} <small className="fw-12 text-warning">(Totales de todos sus cursos)</small>
+                <MessageCircle size={16} className="text-primary me-2" />{" "}
+                Comentarios : <span className="ms-1 fw-bold">{average.comments}</span>{" "} <small className="fw-12 text-warning ms-1">(Totales de todos sus cursos)</small>
               </p>
-              <p>
+              <p className="d-flex align-items-center">
                 {" "}
-                <i className="fas fa-users text-primary me-2"></i> Cantidad de
-                estudiantes: <span>{average.studentes}</span>{" "}
+                <Users size={16} className="text-primary me-2" /> Cantidad de
+                estudiantes: <span className="ms-1 fw-bold">{average.studentes}</span>{" "}
               </p>
-              <p>
+              <p className="d-flex align-items-center">
                 {" "}
-                <i className="fas fa-book text-primary me-2"></i> cursos:{" "}
-                <span>{average.courses}</span>{" "}
+                <Book size={16} className="text-primary me-2" /> cursos:{" "}
+                <span className="ms-1 fw-bold">{average.courses}</span>{" "}
               </p>
             </div>
           </div>
 
           <div className="text-end">
             <Link to={`/course/by-teacher/${courseInfo.idTeacher}`}>
-              <button className="btn btn-outline-warning">
-                <i className="fa-brands fa-google-scholar me-2"></i>
+              <button className="btn btn-outline-warning d-inline-flex align-items-center justify-content-center">
+                <GraduationCap size={18} className="me-2" />
                 Ver más cursos
               </button>
             </Link>
@@ -754,11 +756,11 @@ const InfoByCourseName = () => {
         <section>
           <Spin spinning={loaderModalComment} tip='Guardando comentario...' >
             <header>
-              <p className="fs-18 fw-bold  mb-0">
-                <i className="fa-solid fa-feather text-primary"></i> Deja tu
+              <p className="fs-18 fw-bold mb-0 d-flex align-items-center">
+                <Feather size={20} className="text-primary me-2" /> Deja tu
                 comentario u opinión acerca de este curso
               </p>
-              <p className="mb-0 fs-12 text-danger">
+              <p className="mb-0 fs-12 text-danger mt-1">
                 Recuerda no usar palabras ofensivas o tu comentario será eliminado
               </p>
             </header>
@@ -779,7 +781,7 @@ const InfoByCourseName = () => {
               />
             </div>
             <div className="mt-3">
-              <p> <i className="fas fa-star text-warning me-2"></i> Agrega una calificación</p>
+              <p className="d-flex align-items-center mb-2"> <Star size={16} className="text-warning me-2" fill="#ffc107" /> Agrega una calificación</p>
               <Radio.Group
                 className=""
                 onChange={(e: RadioChangeEvent) => {
@@ -798,9 +800,8 @@ const InfoByCourseName = () => {
               </Radio.Group>
             </div>
 
-            <div className="mt-4 text-end
-            ">
-              <button className="btn btn-outline-danger btn-sm me-2"
+            <div className="mt-4 text-end d-flex justify-content-end gap-2">
+              <button className="btn btn-outline-danger btn-sm d-inline-flex align-items-center justify-content-center"
                 onClick={() => {
                   setAddCommentInput({
                     comment: '',
@@ -808,13 +809,13 @@ const InfoByCourseName = () => {
                   });
                   setShowModalComment(false);
                 }}
-              > <i className="fas fa-times me-2"></i> Cerrar</button>
+              > <X size={16} className="me-2" /> Cerrar</button>
               
-              <button className="btn btn-outline-primary btn-sm"
+              <button className="btn btn-outline-primary btn-sm d-inline-flex align-items-center justify-content-center"
                 onClick={() => {
                   addComment();
                 }}
-              > <i className="fas fa-paper-plane me-2"></i> Enviar comentario</button>
+              > <Send size={16} className="me-2" /> Enviar comentario</button>
             </div>
           </Spin>
         </section>

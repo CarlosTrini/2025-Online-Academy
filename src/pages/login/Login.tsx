@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 import "./loginStyles.scss";
 import { Input, Spin } from "antd";
 import { Link, useNavigate} from "react-router-dom";
+import { User, Key, Pen, LogIn } from "lucide-react";
 
 // INTERFACES & TYPES
 import type { userT, loginDataT } from "../../typesInterfaces/types";
@@ -175,7 +176,7 @@ const Login = () => {
               id="user"
               value={inputsValues.user}
               size="large"
-              addonAfter={<i className="fas fa-user text-primary" />}
+              addonAfter={<User size={18} className="text-primary" />}
               onChange={handleInputs}
             />
           </div>
@@ -188,7 +189,7 @@ const Login = () => {
               id="password"
               value={inputsValues.password}
               size="large"
-              addonAfter={<i className="fas fa-key text-primary" />}
+              addonAfter={<Key size={18} className="text-primary" />}
               onChange={handleInputs}
             />
           </div>
@@ -198,6 +199,7 @@ const Login = () => {
               <Button
                 variant="outline-secondary"
                 id="registerrrr"
+                className="d-flex align-items-center"
                 onClick={() => {
                   resetInputs();
                   const registerLink = document.getElementById('goRegisterBtn');
@@ -206,13 +208,13 @@ const Login = () => {
                 }
                 }}
               >
-                <i className="fas fa-pen me-1 "></i>
+                <Pen size={16} className="me-2" />
                 Registrarme
             <Link to={"/register"} className="d-none" id="goRegisterBtn"/>
               </Button>
 
-            <Button variant="outline-primary" onClick={handleLogin}>
-              <i className="fas fa-right-to-bracket me-1"></i>
+            <Button variant="primary" className="d-flex align-items-center" onClick={handleLogin}>
+              <LogIn size={16} className="me-2" />
               Entrar
             </Button>
           </div>

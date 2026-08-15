@@ -27,9 +27,9 @@ import {
 import CreditCard from "../profile/tabs/CreditCard";
 
 import qrImage from "../../assets/qr-code.png";
-import PDFDocument from '../../assets/Documento sin título.pdf';
 import payementProcessImg from "../../assets/payment-process.png";
 import fileRepeated from "../../assets/file-repeated.png";
+import { User, Search, TriangleAlert, Trash2, Coins, Video, Star, DollarSign, CreditCard as CreditCardIcon, CircleHelp, Info, Clock, Download, Mail, ArrowRightLeft, CheckCircle, X, Hand } from "lucide-react";
 
 const initCardI = {
   nameOwner: "",
@@ -345,16 +345,16 @@ const Cart = () => {
                 <div className="d-flex justify-content-center">
                   {paymentCompleted === true && (
                     <Link to={`/profile/${userInfo.id}`} className="me-2">
-                      <button className="btn btn-outline-success mt-3">
-                        <i className="fa-solid fa-user me-1"></i>
+                      <button className="btn btn-outline-success mt-3 d-inline-flex align-items-center justify-content-center">
+                        <User size={18} className="me-2" />
                         Ir a mi perfil
                       </button>
                     </Link>
                   )}
 
                   <Link to={"/"}>
-                    <button className="btn btn-outline-primary mt-3">
-                      <i className="fa-solid fa-magnifying-glass me-1"></i>
+                    <button className="btn btn-outline-primary mt-3 d-inline-flex align-items-center justify-content-center">
+                      <Search size={18} className="me-2" />
                       Buscar más cursos
                     </button>
                   </Link>
@@ -376,15 +376,15 @@ const Cart = () => {
                             {c.isRepeated === true && (
                               <>
                                 <p className="text-white bg-danger p-2 mb-0 rounded fw-bold align-self-center me-2 ">
-                                  <i className="fas fa-triangle-exclamation me-2 "></i>
+                                  <TriangleAlert size={18} className="me-2" />
                                   Este cursos ya fue comprado
                                   <br />
-                                  <button className="btn btn-danger" 
+                                  <button className="btn btn-danger d-inline-flex align-items-center justify-content-center" 
                                    onClick={() => {
                                     removeCourseCtx(c.idCourse);
                                   }}
                                   >
-                                    <i className="fas fa-trash me-1"></i> Eliminar.
+                                    <Trash2 size={16} className="me-2" /> Eliminar.
 
                                   </button>
                                 </p>
@@ -405,17 +405,17 @@ const Cart = () => {
                                   ${c.price}
                                 </p>
                                 <span>
-                                  <i className="fas fa-coins ms-1 text-warning"></i>
+                                  <Coins size={16} className="ms-1 text-warning" />
                                 </span>
                               </div>
                               <div className="text-end">
                                 <button
-                                  className="btn btn-outline-danger btn-sm"
+                                  className="btn btn-outline-danger btn-sm d-inline-flex align-items-center justify-content-center"
                                   onClick={() => {
                                     removeCourseCtx(c.idCourse);
                                   }}
                                 >
-                                  <i className="fas fa-trash"></i>
+                                  <Trash2 size={16} />
                                 </button>
                               </div>
                             </div>
@@ -432,8 +432,8 @@ const Cart = () => {
 
                     {/* TUS CURSOS */}
                     <div className="info-container">
-                      <p className="fw-bold fs-20">
-                        <i className="fa-solid fa-video me-1"></i>
+                      <p className="fw-bold fs-20 d-flex align-items-center">
+                        <Video size={18} className="me-2" />
                         Tus cursos
                       </p>
 
@@ -458,29 +458,29 @@ const Cart = () => {
 
                     {/* TOTAL DE ARTÍCULOS */}
                     <div className="info-container mt-3">
-                      <p className="fw-bold fs-20">
-                        <i className="fa-solid fa-star me-1"></i>
+                      <p className="fw-bold fs-20 d-flex align-items-center">
+                        <Star size={18} className="me-2" />
                         Total de artículos:{" "}
                       </p>
-                      <p className=" mb-1 fw-18">
+                      <p className=" mb-1 fw-18 d-flex align-items-center">
                         Precio original:{" "}
-                        <span className="fw-bold text-danger text-decoration-line-through ">
-                          <i className="fa-solid fa-dollar-sign me-1"></i>
+                        <span className="fw-bold text-danger text-decoration-line-through d-flex align-items-center ms-2">
+                          <DollarSign size={16} className="me-1" />
                           {courses?.totalDiscount.toFixed(2)}
                         </span>{" "}
                       </p>
 
-                      <p className="mb-1 fw-18 bordered text-decoration-underline">
+                      <p className="mb-1 fw-18 bordered text-decoration-underline d-flex align-items-center">
                         Tu ahorro:{" "}
-                        <span className="fw-bold text-warning">
-                          <i className="fa-solid fa-dollar-sign me-1"></i>
+                        <span className="fw-bold text-warning d-flex align-items-center ms-2">
+                          <DollarSign size={16} className="me-1" />
                           {(courses?.totalDiscount - courses?.total).toFixed(2)}
                         </span>{" "}
                       </p>
-                      <p className=" mt-2 fw-18">
+                      <p className=" mt-2 fw-18 d-flex align-items-center">
                         Total a pagar:{" "}
-                        <span className="fw-bold text-primary">
-                          <i className="fa-solid fa-dollar-sign me-1"></i>
+                        <span className="fw-bold text-primary d-flex align-items-center ms-2">
+                          <DollarSign size={16} className="me-1" />
                           {courses?.total.toFixed(2)}
                         </span>{" "}
                       </p>
@@ -488,8 +488,8 @@ const Cart = () => {
 
                     {/* MÉTODO DE PAGO */}
                     <div className="info-container mt-3">
-                      <p className=" mb-1 fw-bold fs-20">
-                        <i className="fa-solid fa-cash-register me-1"></i>
+                      <p className=" mb-1 fw-bold fs-20 d-flex align-items-center">
+                        <CreditCardIcon size={18} className="me-2" />
                         Método de pago:
                       </p>
 
@@ -534,9 +534,7 @@ const Cart = () => {
                               </>
                             }
                           >
-                            <i className="fas fa-circle-question text-primary">
-                              {" "}
-                            </i>
+                            <CircleHelp size={16} className="text-primary ms-2" />
                           </Tooltip>
                         </Radio>
                       </Radio.Group>
@@ -564,13 +562,13 @@ const Cart = () => {
 
                       <div className="text-end mb-2">
                         <button
-                          className="btn btn-success"
+                          className="btn btn-success d-inline-flex align-items-center justify-content-center"
                           onClick={() => {
                             handlePayment();
                           }}
                         >
                           {" "}
-                          <i className="fas fa-circle-info"></i> Pagar ahora
+                          <Info size={18} className="me-2" /> Pagar ahora
                         </button>
                       </div>
                     </div>
@@ -652,16 +650,16 @@ const Cart = () => {
         centered={true}
       >
         <header>
-          <p className="fs-18 fw-bold  mb-0">
-            <i className="fas fa-clock "></i> Pago con oxxo en menos de{" "}
-            <span className="text-warning">72 horas</span>
+          <p className="fs-18 fw-bold  mb-0 d-flex align-items-center">
+            <Clock size={18} className="me-2" /> Pago con oxxo en menos de{" "}
+            <span className="text-warning ms-1">72 horas</span>
           </p>
 
           <div>
-            <p className=" mt-2 fw-18 text-primary">
+            <p className=" mt-2 fw-18 text-primary d-flex align-items-center">
               Total a pagar:{" "}
-              <span className="fw-bold">
-                <i className="fa-solid fa-dollar-sign me-1"></i>
+              <span className="fw-bold d-flex align-items-center ms-2">
+                <DollarSign size={16} className="me-1" />
                 {courses?.total}
               </span>{" "}
             </p>
@@ -684,17 +682,17 @@ const Cart = () => {
             <div>
               <a  href={PDFDocument} download={true} className="">
               <button
-                className="btn btn-outline-primary btn-sm"
+                className="btn btn-outline-primary btn-sm d-inline-flex align-items-center justify-content-center"
                 onClick={() => {}}
                 >
-                <i className="fas fa-download"></i> Guardar este código QR
+                <Download size={16} className="me-2" /> Guardar este código QR
               </button>
                 </a>
             </div>
 
-            <small className="text-success">
+            <small className="text-success d-flex align-items-center justify-content-center mt-2">
               {" "}
-              <i className="fas fa-envelope"></i> Le enviaremos un correo
+              <Mail size={16} className="me-2" /> Le enviaremos un correo
               eléctronico al completar el pago.{" "}
             </small>
           </div>
@@ -711,7 +709,7 @@ const Cart = () => {
               }}
             >
               {" "}
-              <i className="fa-solid fa-arrow-right-arrow-left"></i> Seleccionar
+              <ArrowRightLeft size={16} className="me-2" /> Seleccionar
               otro método de pago
             </button>
           </div>
@@ -731,22 +729,22 @@ const Cart = () => {
                   </p>
                   <div className="text-end">
                     <button
-                      className="btn btn-outline-primary me-2"
+                      className="btn btn-outline-primary me-2 d-inline-flex align-items-center justify-content-center"
                       onClick={() => {
                         handlePaymentOxxo();
                       }}
                     >
                       {" "}
-                      <i className="fas fa-circle-check"></i> Sí{" "}
+                      <CheckCircle size={16} className="me-2" /> Sí{" "}
                     </button>
                     <button
-                      className="btn btn-outline-warning"
+                      className="btn btn-outline-warning d-inline-flex align-items-center justify-content-center"
                       onClick={() => {
                         setPaymentCompletedOxxo(false);
                       }}
                     >
                       {" "}
-                      <i className="fas fa-times"> </i> Aún no{" "}
+                      <X size={16} className="me-2" /> Aún no{" "}
                     </button>
                   </div>
                 </>
@@ -760,7 +758,7 @@ const Cart = () => {
                   }}
                 >
                   {" "}
-                  <i className="fas fa-times"></i> Cerrar
+                  <X size={16} className="me-2" /> Cerrar
                 </button>
               </div>
             </Tooltip>
@@ -782,8 +780,8 @@ const Cart = () => {
           tip={"Procesando..."}
           size="large"
         >
-          <p className="fs-22 fw-bold  mb-0">
-            <i className="fas fa-money-bill me-1"></i> Procesando tu pago con
+          <p className="fs-22 fw-bold  mb-0 d-flex align-items-center">
+            <Coins size={22} className="me-2" /> Procesando tu pago con
             tarjeta
           </p>
 
@@ -791,10 +789,10 @@ const Cart = () => {
             <img src={payementProcessImg} alt="" />
           </div>
 
-          <p className="bg-warning fs-18 mt-3 text-dark rounded p-2">
-            <i className="fas fa-triangle-exclamation me-2 "></i>
-            <span className="fw-bold"> No cierre esta ventana</span>, una vez el
-            pago sea correcto, se cerrará de manera automática
+          <p className="bg-warning fs-18 mt-3 text-dark rounded p-2 d-flex align-items-center">
+            <TriangleAlert size={20} className="me-2" />
+            <span><span className="fw-bold"> No cierre esta ventana</span>, una vez el
+            pago sea correcto, se cerrará de manera automática</span>
           </p>
         </Spin>
       </Modal>
@@ -810,29 +808,31 @@ const Cart = () => {
         }}
         centered={true}
       >
-        <p className="fs-22 fw-bold text-danger mb-0">
-          <i className="fas fa-hand me-1"></i> Antes de continuar...
+        <p className="fs-22 fw-bold text-danger mb-0 d-flex align-items-center">
+          <Hand size={22} className="me-2" /> Antes de continuar...
         </p>
 
         <div className="file-repeated-img">
           <img src={fileRepeated} alt="" />
         </div>
 
-        <p className="bg-warning fs-18 mt-3 text-dark rounded p-2">
-          <i className="fas fa-triangle-exclamation me-2 "></i>
+        <p className="bg-warning fs-18 mt-3 text-dark rounded p-2 d-flex align-items-center">
+          <TriangleAlert size={20} className="me-2" />
+          <span>
           Hemos detectado alguno o algunos cursos en tu carrito a los cuales
           <span className="fw-bold"> ya te encuentras suscrito</span>. <br />
           Eliminalos de tu carrito para poder proceder con el pago.
           <br />
           Los cursos repetidos serán marcados en la parte superior.
+          </span>
         </p>
         <div className="text-end">
           <button 
-          className="btn btn-outline-primary"
+          className="btn btn-outline-primary d-inline-flex align-items-center justify-content-center"
           onClick={() => {
             setShowCoursesRepeatModal(false);
           }}
-          > <i className="fas fa-circle-check me-1" ></i> Entendido</button>
+          > <CheckCircle size={16} className="me-2" /> Entendido</button>
         </div>
       </Modal>
 

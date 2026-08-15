@@ -17,6 +17,7 @@ import { CategoryContextHook } from "../../context/categoryContextProvider";
 import { AuthContextHook } from "../../context/AuthContextProvider";
 import { simpleAlertTimer } from "../../helpers/alerts";
 import GlobalLoader from "../loader/GlobalLoader";
+import { ShoppingBag, DoorOpen, UserRoundPlus, UserCircle, DoorClosed, Coins, Trash2, CreditCard } from "lucide-react";
 
 type categoriesCatalog = {
   value: courseCategoriesT;
@@ -61,7 +62,7 @@ const Header = () => {
   };
 
   const payCart = () => {
-    
+
     if (isAuth === false) {
       return simpleAlertTimer({
         title: 'Es necesario inciar sesión',
@@ -79,7 +80,7 @@ const Header = () => {
     setShowGlobalLoader(value);
     setTimeout(() => {
       setShowGlobalLoader(false);
-    }, 1400); 
+    }, 1400);
   }
 
   useEffect(() => {
@@ -89,16 +90,16 @@ const Header = () => {
 
   return (
     <>
-    {
-      showGlobalLoader === true && (
-        <GlobalLoader />
-      )
-    }
-      <header className="p-2 header-style">
-        <Row className="justify-content-between">
-          <Col md={2} className="d-flex align-items-center">
+      {
+        showGlobalLoader === true && (
+          <GlobalLoader />
+        )
+      }
+      <header className="header-style">
+        <Row className="justify-content-between align-items-center flex-column flex-md-row gap-3 gap-md-0 pb-3 pb-md-0">
+          <Col xs={12} md={4} lg={3} className="d-flex align-items-center justify-content-between justify-content-md-start w-100 w-md-auto" >
             <div
-              className="d-flex align-items-center"
+              className="d-flex align-items-center flex-shrink-0"
               style={{ cursor: "pointer" }}
               onClick={() => redirectMainPage()}
             >
@@ -109,11 +110,11 @@ const Header = () => {
                 height={30}
                 className="rounded-circle"
               />
-              <p className="mb-0 fw-bold ms-2 text-primary">Online Academy</p>
+              <p className="mb-0 fw-bold ms-2 text-primary d-none d-sm-block">Online Academy</p>
             </div>
             <Select
-              style={{ width: "100%" }}
-              className="ms-3"
+              style={{ width: "100%", maxWidth: "200px" }}
+              className="ms-3 flex-grow-1 flex-md-grow-0"
               placeholder={"Categorías"}
               options={categories}
               // value={categorySelected}
@@ -128,8 +129,10 @@ const Header = () => {
           </Col>
 
           <Col
-            md={10}
-            className="d-flex justify-content-end align-items-center"
+            xs={12}
+            md={8}
+            lg={9}
+            className="d-flex justify-content-center justify-content-md-end align-items-center flex-wrap gap-3"
           >
             {/* <div style={{ width: "40%" }}>
               <Input
@@ -140,13 +143,13 @@ const Header = () => {
                 id="search"
                 value={""}
                 size="large"
-                addonAfter={<i className="fas fa-search text-primary" />}
+                // addonAfter={<i className="fas fa-search text-primary" />}
                 onChange={() => {}}
               />
             </div> */}
 
             <Badge count={cartCtx.infoCourse.length}>
-              <div style={{ fontSize: "30px" }} className="ms-3">
+              <div style={{ fontSize: "24px" }} className="">
                 <p
                   className="mb-0 "
                   style={{ cursor: "pointer" }}
@@ -154,89 +157,89 @@ const Header = () => {
                     setShowCart(!showCart);
                   }}
                 >
-                  <i className="fas fa-bag-shopping text-primary"></i>
+                  <ShoppingBag size={24} className="text-primary" />
                 </p>
               </div>
             </Badge>
 
             {isAuth === false && (
-              <div className="ms-3">
-                <button className="btn btn-outline-dark me-1">
-                  <i className="fas fa-door-open me-1 "></i>
-                  <Link to={"/login"}>Login</Link>
+              <div className="d-flex gap-2">
+                <button className="btn btn-outline-dark btn-sm d-inline-flex align-items-center justify-content-center px-3">
+                  <DoorOpen size={16} className="me-2" />
+                  <Link to={"/login"} className="text-reset text-decoration-none">Login</Link>
                 </button>
 
-                <button className="btn btn-outline-secondary">
-                  <i className="fas fa-address-card me-1 "></i>
-                  <Link to={"/register"}>Registrame</Link>
+                <button className="btn btn-primary btn-sm d-inline-flex align-items-center justify-content-center px-3">
+                  <UserRoundPlus size={16} className="me-2" />
+                  <Link to={"/register"} className="text-white text-decoration-none">Registro</Link>
                 </button>
               </div>
             )}
 
             {isAuth === true && (
-              <div className="ms-3 d-flex align-items-center">
-                <p className="mb-0 me-2 fs-18 fw-bold">{authInfo.name}</p>
+              <div className="d-flex align-items-center gap-2">
+                <p className="mb-0 fs-16 fw-bold d-none d-sm-block text-dark">{authInfo.name}</p>
                 <div>
 
-                <Dropdown
-                  menu={{
-                    items: [
-                      {
-                        key: "1",
-                        label: (
-                          <>
-                            <div className="text-center">
-                              <Link to={`/profile/${authInfo.idUser}`}>
-                                {/* <button className=" "> */}
+                  <Dropdown
+                    menu={{
+                      items: [
+                        {
+                          key: "1",
+                          label: (
+                            <>
+                              <div className="text-center">
+                                <Link to={`/profile/${authInfo.idUser}`}>
+                                  {/* <button className=" "> */}
 
-                                  <p className="mb-0 fs-16 text-primary">
-                                    <i className="fas fa-circle-user me-2" ></i>
+                                  <p className="mb-0 fs-16 text-primary d-flex align-items-center">
+                                    <UserCircle size={18} className="me-2" />
 
                                     Mi perfil
                                   </p>
                                   {/* </button> */}
-                              </Link>
-                            </div>
-                          </>
-                        ),
-                      },
-                      {
-                        key: "2",
-                        label: (
-                          <>
-                            <div>
-                              <button className="btn text-danger"
-                              onClick={() => {
-                                showGlobalLoaderFn(true);
-                                setTimeout(() => {
-                                  closeAuth();
-                                }, 1000);
-                              }}
-                              >
-                                <i className="fa-solid fa-door-closed me-2"></i>{" "}
-                                Cerrar sesión
-                              </button>
-                            </div>
-                          </>
-                        ),
-                      },
-                    ],
-                  }}
-                >
-                  <div className="profile-header">
-                    <img src={authInfo.userPicture} alt="" />
-                  </div>
-                </Dropdown>
+                                </Link>
+                              </div>
+                            </>
+                          ),
+                        },
+                        {
+                          key: "2",
+                          label: (
+                            <>
+                              <div>
+                                <button className="btn text-danger d-inline-flex align-items-center justify-content-center"
+                                  onClick={() => {
+                                    showGlobalLoaderFn(true);
+                                    setTimeout(() => {
+                                      closeAuth();
+                                    }, 1000);
+                                  }}
+                                >
+                                  <DoorClosed size={18} className="me-2" />{" "}
+                                  Cerrar sesión
+                                </button>
+                              </div>
+                            </>
+                          ),
+                        },
+                      ],
+                    }}
+                  >
+                    <div className="profile-header">
+                      <img src={authInfo.userPicture} alt="" />
+                    </div>
+                  </Dropdown>
                 </div>
               </div>
             )}
           </Col>
-        </Row>
+        </Row >
 
         {/* CART DRAWER */}
-        <Drawer
+        < Drawer
           width={450}
-            // style={{position: 'relative'}}
+          // style={{position: 'relative'}}
           title={
             <>
               <p className="mb-0 text-primary ">Cursos listos para tí</p>
@@ -266,84 +269,84 @@ const Header = () => {
             {/* data */}
             {isEmpty(cartCtx.infoCourse) === false && (
               <>
-              <Carousel dotPosition="left"
-              dots={false}
-          slidesToShow={2}
-          autoplay
-          arrows
-          infinite={false}
-          className="carousel-cart"
-        >
-                {cartCtx.infoCourse.map((c, idx) => {
-                  return (
-                    <div className="mb-3 card-cart ">
-                      <div className="card-cart-content">
-                      <div className="badge bg-primary d-flex align-items-center me-1 fw-bold fs-12">
-                        <p className="mb-0" >{idx + 1}</p>
-                      </div>
-                        <div className="card-cart-img">
-                          <img src={c.imageCourse} alt={c.titleCourse} />
-                        </div>
-                        <div className="ps-2 ">
-                          <p className="mb-3 fw-bold">{c.titleCourse}</p>
-                          <p className="mb-0 text-50">{c.teacherName}</p>
+                <Carousel dotPosition="left"
+                  dots={false}
+                  slidesToShow={2}
+                  autoplay
+                  arrows
+                  infinite={false}
+                  className="carousel-cart"
+                >
+                  {cartCtx.infoCourse.map((c, idx) => {
+                    return (
+                      <div className="mb-3 card-cart ">
+                        <div className="card-cart-content">
+                          <div className="badge bg-primary d-flex align-items-center me-1 fw-bold fs-12">
+                            <p className="mb-0" >{idx + 1}</p>
+                          </div>
+                          <div className="card-cart-img">
+                            <img src={c.imageCourse} alt={c.titleCourse} />
+                          </div>
+                          <div className="ps-2 ">
+                            <p className="mb-3 fw-bold">{c.titleCourse}</p>
+                            <p className="mb-0 text-50">{c.teacherName}</p>
 
-                          <div className="d-flex">
-                            <p className="mb-0 me-2 fw-bold">
-                              ${c.discountPrice}
-                            </p>
-                            <p className="mb-0 text-decoration-line-through text-50">
-                              ${c.price}
-                            </p>
-                            <span>
-                              <i className="fas fa-coins ms-1 text-warning"></i>
-                            </span>
+                            <div className="d-flex">
+                              <p className="mb-0 me-2 fw-bold">
+                                ${c.discountPrice}
+                              </p>
+                              <p className="mb-0 text-decoration-line-through text-50">
+                                ${c.price}
+                              </p>
+                              <span>
+                                <Coins size={16} className="ms-1 text-warning" />
+                              </span>
+                            </div>
                           </div>
                         </div>
+                        <div className="text-end card-delete">
+                          <button
+                            className="btn btn-outline-danger btn-sm d-inline-flex align-items-center justify-content-center"
+                            onClick={() => {
+                              removeCourseCtx(c.idCourse);
+                            }}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
                       </div>
-                      <div className="text-end card-delete">
-                        <button
-                          className="btn btn-outline-danger btn-sm"
-                          onClick={() => {
-                            removeCourseCtx(c.idCourse);
-                          }}
-                        >
-                          <i className="fas fa-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
 
-        </Carousel>
+                </Carousel>
 
                 <div className="cart-pay-section">
                   <p className="fw-bold mb-0 fs-20">Total</p>
                   <div className="bg-dark d-flex text-white justify-content-between rounded p-3 align-items-center">
-                    <p className="mb-0 fw-bold fs-20 ">
+                    <p className="mb-0 fw-bold fs-20 d-flex align-items-center">
                       ${cartCtx.total.toFixed(2)}
-                      <i className="fas fa-coins text-warning ms-1"></i>
+                      <Coins size={20} className="text-warning ms-2" />
                     </p>
                     <p className="bg-danger p-2 mb-0 text-decoration-line-through  fs-16">
                       ${cartCtx.totalDiscount.toFixed(2)}
                     </p>
                   </div>
                   <div className="">
-                    <button className="w-100 btn btn-primary mt-1"
+                    <button className="w-100 btn btn-primary mt-1 d-inline-flex align-items-center justify-content-center"
                       onClick={() => {
                         payCart();
                       }}
                     >
                       {" "}
-                      <i className="fas fa-credit-card me-2"></i> Pagar
+                      <CreditCard size={18} className="me-2" /> Pagar
                     </button>
                   </div>
                 </div>
               </>
             )}
           </section>
-        </Drawer>
-      </header>
+        </Drawer >
+      </header >
     </>
   );
 };

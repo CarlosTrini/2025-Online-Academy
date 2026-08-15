@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Spin, Tabs } from "antd";
 import { useNavigate } from "react-router-dom";
-
-// import Carousel from "react-multi-carousel";
+import { Globe, Cpu, Utensils, UserCheck, Brain, Camera, Video, Pill, Leaf, Link as LinkIcon } from "lucide-react";
 import Carousel from 'next-elastic-carousel';
 import "react-multi-carousel/lib/styles.css";
 
@@ -37,37 +36,42 @@ type tabT = tabNamesT & {
 const tabsDescriptions = {
   "Desarrollo web":
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Desarrollo web-icon": "fas fa-globe",
+  "Desarrollo web-icon": "Globe",
   Programación:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Programación-icon": "fas fa-computer",
+  "Programación-icon": "Cpu",
   Gastronomía:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Gastronomía-icon": "fas fa-cookie-bite",
+  "Gastronomía-icon": "Utensils",
   "Superación personal":
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Superación personal-icon": "fas fa-user-tie",
+  "Superación personal-icon": "UserCheck",
   Psicología:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Psicología-icon": "fas fa-brain",
+  "Psicología-icon": "Brain",
   Fotografía:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Fotografía-icon": "fas fa-camera",
+  "Fotografía-icon": "Camera",
   Video:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Video-icon": "fas fa-video",
+  "Video-icon": "Video",
   Medicina:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Medicina-icon": "fas fa-tablets",
+  "Medicina-icon": "Pill",
   Herbolaria:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, veritatis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, provident",
-  "Herbolaria-icon": "fas fa-leaf",
+  "Herbolaria-icon": "Leaf",
+};
+
+const IconComponent = ({ IconName, ...props }: any) => {
+
+  return <IconName {...props} />;
 };
 
 const TabsContainer = () => {
 
   const NAVIGATE = useNavigate();
-  const {updateCurrentCategory} = useContext(CategoryContextHook);
+  const { updateCurrentCategory } = useContext(CategoryContextHook);
 
   // TODO
   const [tabKey, setTabKey] = useState("1");
@@ -93,7 +97,7 @@ const TabsContainer = () => {
     setTabsNames(tabsN);
   };
 
-  const saveCurrentCategoryAndNavigate = (currentCategory:courseCategoriesT ) => {
+  const saveCurrentCategoryAndNavigate = (currentCategory: courseCategoriesT) => {
     // COMO NO SE TIENE UN MANEJADOR DE ESTADOS Y ESO, PARA AFECTAR EL SELECT DE CATEGORÍA
     //EN EL HEADER, USARMOS LOCALSTORAGE
     updateCurrentCategory(currentCategory);
@@ -128,7 +132,7 @@ const TabsContainer = () => {
       // con los cursos tomar la data necesaria para armar cada card
       const allCards: cardCourseT[] = cardsFilter.map((c) => {
         const teacher = teachers.find((t) => t.id === c.idTeacher);
-        
+
         return {
           shortDescription: c.shortDescription,
           skills: c.skills,
@@ -205,8 +209,8 @@ const TabsContainer = () => {
                 style={{ minHeight: 200 }}
                 tab={
                   <>
-                    <p className="mb-0 badge text-bg-primary" id={t.tabName}>
-                      <i className={`${t.icon} me-2`} />
+                    <p className="mb-0 badge py-2 text-bg-primary" id={t.tabName}>
+                      {/* IconComponent(iconName={t.icon}, color="#000", size={20}) */}
                       {t.tabName}
                     </p>
                   </>
@@ -238,24 +242,24 @@ const TabsContainer = () => {
                       </h3>
                       <p className="tab-description">{tab.tabShortDesc}</p>
                       <div className="mb-3">
-                        <button className="btn btn-outline-dark"
+                        <button className="btn btn-outline-dark d-inline-flex align-items-center justify-content-center"
                           onClick={() => {
                             saveCurrentCategoryAndNavigate(tab.tabName as courseCategoriesT);
                           }}
                         >
-                          <i className="fas fa-link me-2" />
-                            {tab.tabName}
+                          <LinkIcon size={16} className="me-2" />
+                          {tab.tabName}
                         </button>
                       </div>
                       <div className="p-2">
-                        <Carousel 
-                        // responsive={responsive} 
-                        // itemClass="w-auto" 
-                        itemsToShow={4}
-                        className="w-auto"
+                        <Carousel
+                          // responsive={responsive} 
+                          // itemClass="w-auto" 
+                          itemsToShow={4}
+                          className="w-auto"
                         >
                           {tab.coursesData.map((t) => (
-                            <CardCourse  open={true} {...t} key={t.idCourse} />
+                            <CardCourse open={true} {...t} key={t.idCourse} />
                           ))}
                         </Carousel>
                       </div>
